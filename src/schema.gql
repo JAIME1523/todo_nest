@@ -3,6 +3,10 @@
 # ------------------------------------------------------
 
 type Query {
-  helloWorld: String!
-  helloWorld2: String!
+  """Hola es lo que regresa"""
+  hello: String!
+  ramdonNumber: Float!
+
+  """from zero to arugument"""
+  ramdonFronZeroTo(to: Int): Int!
 }
