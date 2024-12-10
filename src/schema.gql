@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Todo {
+  id: Int!
+  description: String!
+  done: Boolean!
+}
+
 type Query {
   """Hola es lo que regresa"""
   hello: String!
@@ -9,4 +15,16 @@ type Query {
 
   """from zero to arugument"""
   ramdonFronZeroTo(to: Int): Int!
+
+  """Obtienes la tista de todos los todos"""
+  todos: [Todo!]!
+  todo(id: Int!): Todo!
+}
+
+type Mutation {
+  createTodo(createTodoInput: CreareTodoInput!): Todo!
+}
+
+input CreareTodoInput {
+  description: String!
 }
