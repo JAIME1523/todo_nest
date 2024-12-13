@@ -2,7 +2,7 @@ import { Field, InputType } from "@nestjs/graphql";
 import { IsNotEmpty, IsString, MaxLength } from "class-validator";
 
 @InputType()
-export class CreareTodoInput{
+export class CreateTodoInput{
     @Field(()=> String)
     @IsString()
     @IsNotEmpty()

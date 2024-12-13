@@ -8,6 +8,14 @@ type Todo {
   done: Boolean!
 }
 
+"""Todo quick aggregations"""
+type AggregationsType {
+  total: Int!
+  pending: Int!
+  completed: Int!
+  totalTodoscompleted: Int! @deprecated(reason: "No usar")
+}
+
 type Query {
   """Hola es lo que regresa"""
   hello: String!
@@ -17,14 +25,30 @@ type Query {
   ramdonFronZeroTo(to: Int): Int!
 
   """Obtienes la tista de todos los todos"""
-  todos: [Todo!]!
+  todos(status: StatusArgs): [Todo!]!
   todo(id: Int!): Todo!
+  totalTodos: Int!
+  completedTodos: Int!
+  pendingTodos: Int!
+  aggregations: AggregationsType!
+}
+
+input StatusArgs {
+  statusAr: Boolean
 }
 
 type Mutation {
-  createTodo(createTodoInput: CreareTodoInput!): Todo!
+  createTodo(createTodoInput: CreateTodoInput!): Todo!
+  updateTodo(UpdateTodo: UpdateTodoInput!): Todo!
+  remove(id: Int!): Boolean!
 }
 
-input CreareTodoInput {
+input CreateTodoInput {
   description: String!
+}
+
+input UpdateTodoInput {
+  description: String
+  done: Boolean
+  id: Int!
 }
